@@ -495,6 +495,8 @@ turnover_year_total = turnover_year_store * n_stores
 turnover_year_total_new = turnover_year_store_new * n_stores
 uplift_year_total = uplift_year_store * n_stores
 extra_profit_year_total = extra_profit_year_store * n_stores
+uplift_contract_total = uplift_year_total * tco_years
+extra_profit_contract_total = extra_profit_year_total * tco_years
 
 tco_store = install_cost_store + monthly_service_cost_store * 12 * tco_years
 tco_total = tco_store * n_stores
@@ -526,12 +528,12 @@ with k1:
     )
 with k2:
     st.markdown(
-        f'<div class="card"><div><b>Uplift / year</b></div><div class="kpi">{fmt_money(uplift_year_total, currency)}</div><div class="kpi-sub">Scenario versus baseline</div></div>',
+        f'<div class="card"><div><b>Uplift over {tco_years} year{"s" if tco_years != 1 else ""}</b></div><div class="kpi">{fmt_money(uplift_contract_total, currency)}</div><div class="kpi-sub">Scenario versus baseline over selected contract term</div></div>',
         unsafe_allow_html=True,
     )
 with k3:
     st.markdown(
-        f'<div class="card"><div><b>Extra profit / year</b></div><div class="kpi">{fmt_money(extra_profit_year_total, currency)}</div><div class="kpi-sub">At margin {fmt_pct(gross_margin)}</div></div>',
+        f'<div class="card"><div><b>Extra profit over {tco_years} year{"s" if tco_years != 1 else ""}</b></div><div class="kpi">{fmt_money(extra_profit_contract_total, currency)}</div><div class="kpi-sub">Gross profit over selected contract term</div></div>',
         unsafe_allow_html=True,
     )
 with k4:
@@ -625,7 +627,7 @@ if footfall_uplift > max(conversion_uplift, atv_uplift):
     recs.append("Footfall is doing most of the work. Good bridge into campaigns, events or local activation.")
 if atv_uplift > max(footfall_uplift, conversion_uplift):
     recs.append("ATV is the main lever. Use that when the conversation is about cross-sell, upsell or service quality.")
-if payback_years != float("inf") and payback_years < 1:
+if payback_months != float("inf") and payback_months < 12:
     recs.append("Payback under 12 months. That is exactly the kind of line people repeat after they leave the stand.")
 if sat_boost > 0:
     recs.append("Saturday controls are active, but hidden by default. Sensible. Saturday is a side story, not the opening act.")
