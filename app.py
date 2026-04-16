@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="PFM ROI Simulator — RTS Edition", page_icon="💡", layout="wide")
+st.set_page_config(page_title="PFM ROI Calculator", page_icon="💡", layout="wide")
 
 PFM_PURPLE = "#762181"
 PFM_RED = "#F04438"
@@ -291,8 +291,8 @@ def apply_preset(name: str) -> None:
     st.session_state["preset_desc"] = preset["desc"]
 
 
-st.title("PFM ROI Simulator — RTS Edition")
-st.caption("Fast, event-ready ROI calculator for trade show and kiosk conversations.")
+st.title("PFM ROI Calculator")
+st.caption("Unlock Location Potential.")
 
 st.markdown("#### Preset & scope")
 col1, col2, col3, col4 = st.columns([2.1, 0.9, 1.0, 1.1])
