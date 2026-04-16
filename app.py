@@ -339,7 +339,7 @@ left, right = st.columns([1, 1])
 with left:
     st.subheader("Inputs (per store)")
     st.session_state["visitors_day"] = st.number_input(
-        "Visitors per day",
+        "Daily footfall",
         min_value=0,
         step=10,
         value=int(st.session_state["visitors_day"]),
@@ -399,7 +399,7 @@ with right:
     )
     st.session_state["conversion_uplift"] = (
         st.slider(
-            "Conversion uplift (%)",
+            "Net change in conversion rate (pp)",
             min_value=0.0,
             max_value=20.0,
             value=float(round(st.session_state["conversion_uplift"] * 100, 1)),
@@ -474,7 +474,7 @@ install_cost_store = float(v["install_cost_store"])
 monthly_service_cost_store = float(v["monthly_service_cost_store"])
 
 visitors_day_new = visitors_day * (1 + footfall_uplift)
-conv_pct_new = conv_pct * (1 + conversion_uplift)
+conv_pct_new = min(1.0, conv_pct + conversion_uplift)
 atv_new = atv * (1 + atv_uplift)
 
 visitors_year_store = visitors_day * open_days * 52
