@@ -142,6 +142,16 @@ div[data-testid="stWidgetLabel"] label {{
   opacity: 1 !important;
 }}
 
+/* Slider labels en captions */
+.stSlider label,
+.stNumberInput label,
+.stSelectbox label,
+.stRadio label {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+  opacity: 1 !important;
+}}
+
 .stNumberInput > div > div > input,
 .stTextInput > div > div > input,
 div[data-baseweb="input"] input,
