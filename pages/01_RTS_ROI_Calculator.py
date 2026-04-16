@@ -20,16 +20,16 @@ BASE_CSS = f"""
   --pfm-black: {PFM_BLACK};
 }}
 
-html, body, [class*="css"] {
+html, body, [class*="css"] {{
   font-family: 'Instrument Sans', sans-serif !important;
   background: #FFFFFF !important;
   color: #0C111D !important;
-}
+}}
 
-body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stMain"] {
+body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stMain"] {{
   background: #FFFFFF !important;
   color: #0C111D !important;
-}
+}}
 
 header {{
   visibility: hidden;
