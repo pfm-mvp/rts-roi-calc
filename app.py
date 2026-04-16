@@ -236,7 +236,7 @@ PRESETS = {
 }
 
 DEFAULTS = {
-    "currency": "EUR",
+    "currency": "GBP",
     "num_stores": 50,
     "tco_years": 3,
     "visitors_day": 150,
