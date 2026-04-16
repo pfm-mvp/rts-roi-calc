@@ -555,68 +555,6 @@ with k6:
         unsafe_allow_html=True,
     )
 
-st.markdown("### Visuals")
-
-baseline_fmt = fmt_money(turnover_year_total, currency)
-scenario_fmt = fmt_money(turnover_year_total_new, currency)
-
-fig_bar = go.Figure()
-fig_bar.add_trace(
-    go.Bar(
-        name="Baseline",
-        x=["Annual revenue"],
-        y=[turnover_year_total],
-        marker_color=PFM_AMBER,
-        text=[baseline_fmt],
-        textposition="outside",
-        customdata=[[baseline_fmt]],
-        hovertemplate="Baseline: %{customdata[0]}<extra></extra>",
-    )
-)
-fig_bar.add_trace(
-    go.Bar(
-        name="Scenario",
-        x=["Annual revenue"],
-        y=[turnover_year_total_new],
-        marker_color=PFM_PURPLE,
-        text=[scenario_fmt],
-        textposition="outside",
-        customdata=[[scenario_fmt]],
-        hovertemplate="Scenario: %{customdata[0]}<extra></extra>",
-    )
-)
-fig_bar.update_layout(
-    barmode="group",
-    height=420,
-    margin=dict(l=20, r=20, t=10, b=10),
-    legend=dict(orientation="h"),
-)
-st.plotly_chart(fig_bar, use_container_width=True)
-
-fig_pie = go.Figure(
-    data=[
-        go.Pie(
-            labels=["Footfall", "Conversion", "ATV"],
-            values=[
-                footfall_component / component_sum,
-                conv_component / component_sum,
-                atv_component / component_sum,
-            ],
-            hole=0.55,
-            marker=dict(colors=[PFM_AMBER, PFM_RED, PFM_PURPLE]),
-            textinfo="percent+label",
-            customdata=[
-                [fmt_money(footfall_component, currency)],
-                [fmt_money(conv_component, currency)],
-                [fmt_money(atv_component, currency)],
-            ],
-            hovertemplate="%{label}: %{percent} — uplift %{customdata[0]}<extra></extra>",
-        )
-    ]
-)
-fig_pie.update_layout(height=400, margin=dict(l=20, r=20, t=10, b=10), showlegend=True)
-st.plotly_chart(fig_pie, use_container_width=True)
-
 st.markdown("### Recommended talk track")
 recs = []
 if uplift_year_total <= 0:
