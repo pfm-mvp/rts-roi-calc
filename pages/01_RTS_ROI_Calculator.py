@@ -554,23 +554,3 @@ with k6:
         f'<div class="card-outline"><div><b>ROI over {tco_years} years</b></div><div class="kpi">{fmt_pct(roi_horizon)}</div><div class="kpi-sub">Net value: {fmt_money(net_value_horizon, currency)}</div></div>',
         unsafe_allow_html=True,
     )
-
-st.markdown("### Recommended talk track")
-recs = []
-if uplift_year_total <= 0:
-    recs.append("Start clean: keep all three uplifts at zero, then move one lever at a time.")
-if conversion_uplift > 0 and conversion_uplift >= max(footfall_uplift, atv_uplift):
-    recs.append("Conversion is the strongest story here. That lands well when you position PFM as improving store execution.")
-if footfall_uplift > max(conversion_uplift, atv_uplift):
-    recs.append("Footfall is doing most of the work. Good bridge into campaigns, events or local activation.")
-if atv_uplift > max(footfall_uplift, conversion_uplift):
-    recs.append("ATV is the main lever. Use that when the conversation is about cross-sell, upsell or service quality.")
-if payback_months != float("inf") and payback_months < 12:
-    recs.append("Payback under 12 months. That is exactly the kind of line people repeat after they leave the stand.")
-if sat_boost > 0:
-    recs.append("Saturday controls are active, but hidden by default. Sensible. Saturday is a side story, not the opening act.")
-if not recs:
-    recs.append("Use one metric change at a time. Cleaner story, stronger credibility.")
-
-for rec in recs:
-    st.write(f"- {rec}")
