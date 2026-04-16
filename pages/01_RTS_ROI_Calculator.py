@@ -70,6 +70,11 @@ header {{
   color: #667085;
 }}
 
+/* Align Apply preset button vertically */
+div[data-testid="stButton"] {{
+  margin-top: -6px !important;
+}}
+
 .stButton > button {{
   background-color: var(--pfm-red) !important;
   color: white !important;
