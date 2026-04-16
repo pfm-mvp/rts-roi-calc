@@ -125,6 +125,23 @@ div[data-testid="stWidgetLabel"] p {{
   -webkit-text-fill-color: #0C111D !important;
 }}
 
+/* Widget labels boven inputs/sliders */
+div[data-testid="stWidgetLabel"] {{
+  color: #0C111D !important;
+}}
+
+div[data-testid="stWidgetLabel"] p {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+  opacity: 1 !important;
+}}
+
+div[data-testid="stWidgetLabel"] label {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+  opacity: 1 !important;
+}}
+
 .stNumberInput > div > div > input,
 .stTextInput > div > div > input,
 div[data-baseweb="input"] input,
