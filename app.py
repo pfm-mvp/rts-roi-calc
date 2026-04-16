@@ -309,6 +309,7 @@ with col2:
     st.session_state["currency"] = st.radio(
         "Currency",
         ["EUR", "GBP"],
+        index=["EUR", "GBP"].index(st.session_state["currency"]),
         horizontal=True,
         label_visibility="collapsed",
     )
