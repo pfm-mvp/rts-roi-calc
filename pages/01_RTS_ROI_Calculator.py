@@ -104,6 +104,27 @@ div[data-testid="stExpander"] {{
   border-radius: 16px !important;
 }}
 
+div[data-testid="stExpander"] details {{
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+}}
+
+div[data-testid="stExpander"] summary {{
+  background: #FFFFFF !important;
+  color: #0C111D !important;
+  border-radius: 16px !important;
+}}
+
+div[data-testid="stExpander"] summary p {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+}}
+
+div[data-testid="stWidgetLabel"] p {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+}}
+
 .stNumberInput > div > div > input,
 .stTextInput > div > div > input,
 div[data-baseweb="input"] input,
@@ -184,7 +205,7 @@ PRESETS = {
 
 DEFAULTS = {
     "currency": "EUR",
-    "num_stores": 100,
+    "num_stores": 50,
     "tco_years": 3,
     "visitors_day": 150,
     "conv_pct": 0.16,
@@ -197,7 +218,7 @@ DEFAULTS = {
     "sat_share": 0.18,
     "sat_boost": 0.00,
     "install_cost_store": 1500.0,
-    "monthly_service_cost_store": 360.0,
+    "monthly_service_cost_store": 25.0,
     "preset_desc": PRESETS["Fashion Retail"]["desc"],
 }
 
