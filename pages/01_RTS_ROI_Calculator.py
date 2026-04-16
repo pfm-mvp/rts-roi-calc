@@ -72,7 +72,7 @@ header {{
 
 /* Align Apply preset button vertically */
 div[data-testid="stButton"] {{
-  margin-top: -40px !important;
+  margin-top: -30px !important;
 }}
 
 .stButton > button {{
