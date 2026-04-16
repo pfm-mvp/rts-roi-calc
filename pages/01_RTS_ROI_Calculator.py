@@ -104,6 +104,33 @@ div[data-testid="stExpander"] {{
   border-radius: 16px !important;
 }}
 
+.stNumberInput > div > div > input,
+.stTextInput > div > div > input,
+div[data-baseweb="input"] input,
+div[data-baseweb="base-input"] input {{
+  background: #FFFFFF !important;
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+}}
+
+.stNumberInput > div > div,
+.stTextInput > div > div,
+div[data-baseweb="input"],
+div[data-baseweb="base-input"] {{
+  background: #FFFFFF !important;
+  border-radius: 12px !important;
+}}
+
+.stSelectbox div[data-baseweb="select"] > div {{
+  background: #FFFFFF !important;
+  color: #0C111D !important;
+}}
+
+.stSelectbox div[data-baseweb="select"] * {{
+  color: #0C111D !important;
+  -webkit-text-fill-color: #0C111D !important;
+}}
+
 .small-note {{
   color: #667085;
   font-size: 0.9rem;
@@ -245,7 +272,7 @@ with col3:
     st.caption("Number of stores")
 
 with col4:
-    st.write("")
+    st.markdown("<div style='height: 28px'></div>", unsafe_allow_html=True)
     if st.button("Apply preset", use_container_width=True):
         apply_preset(preset_name)
         st.rerun()
