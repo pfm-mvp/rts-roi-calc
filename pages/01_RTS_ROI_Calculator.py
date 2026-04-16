@@ -20,9 +20,16 @@ BASE_CSS = f"""
   --pfm-black: {PFM_BLACK};
 }}
 
-html, body, [class*="css"] {{
+html, body, [class*="css"] {
   font-family: 'Instrument Sans', sans-serif !important;
-}}
+  background: #FFFFFF !important;
+  color: #0C111D !important;
+}
+
+body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stMain"] {
+  background: #FFFFFF !important;
+  color: #0C111D !important;
+}
 
 header {{
   visibility: hidden;
@@ -163,7 +170,7 @@ DEFAULTS = {
     "sat_share": 0.18,
     "sat_boost": 0.00,
     "install_cost_store": 1500.0,
-    "annual_service_cost_store": 360.0,
+    "monthly_service_cost_store": 360.0,
     "preset_desc": PRESETS["Fashion Retail"]["desc"],
 }
 
@@ -361,11 +368,11 @@ with st.expander("Commercial assumptions"):
         step=50.0,
         value=float(st.session_state["install_cost_store"]),
     )
-    st.session_state["annual_service_cost_store"] = st.number_input(
-        f"Annual service cost per store ({'€' if st.session_state['currency']=='EUR' else '£'})",
+    st.session_state["monthly_service_cost_store"] = st.number_input(
+        f"Monthly subscription per store ({'€' if st.session_state['currency']=='EUR' else '£'})",
         min_value=0.0,
         step=50.0,
-        value=float(st.session_state["annual_service_cost_store"]),
+        value=float(st.session_state["monthly_service_cost_store"]),
     )
 
 v = st.session_state
@@ -383,7 +390,7 @@ sat_share = float(v["sat_share"])
 sat_boost = float(v["sat_boost"])
 tco_years = int(v["tco_years"])
 install_cost_store = float(v["install_cost_store"])
-annual_service_cost_store = float(v["annual_service_cost_store"])
+monthly_service_cost_store = float(v["monthly_service_cost_store"])
 
 visitors_day_new = visitors_day * (1 + footfall_uplift)
 conv_pct_new = conv_pct * (1 + conversion_uplift)
@@ -409,13 +416,15 @@ turnover_year_total_new = turnover_year_store_new * n_stores
 uplift_year_total = uplift_year_store * n_stores
 extra_profit_year_total = extra_profit_year_store * n_stores
 
-tco_store = install_cost_store + annual_service_cost_store * tco_years
+tco_store = install_cost_store + monthly_service_cost_store * 12 * tco_years
 tco_total = tco_store * n_stores
+monthly_service_total = monthly_service_cost_store * n_stores
+extra_profit_month_total = (uplift_year_total / 12.0) * gross_margin - monthly_service_total
 net_value_horizon = extra_profit_year_total * tco_years - tco_total
 roi_horizon = net_value_horizon / tco_total if tco_total > 0 else 0.0
-payback_years = float("inf")
-if extra_profit_year_total > 0:
-    payback_years = tco_total / extra_profit_year_total
+payback_months = float("inf")
+if extra_profit_month_total > 0:
+    payback_months = (install_cost_store * n_stores) / extra_profit_month_total
 
 conv_only_turnover_year_store = (
     non_sat_visitors_new * conv_pct_new * atv
@@ -453,9 +462,9 @@ with k4:
 
 k5, k6 = st.columns(2)
 with k5:
-    payback_txt = "n/a" if payback_years == float("inf") else f"{payback_years:.1f}".replace(".", ",") + " yr"
+    payback_txt = "n/a" if payback_months == float("inf") else f"{payback_months:.1f}".replace(".", ",") + " mo"
     st.markdown(
-        f'<div class="card-outline"><div><b>Payback time</b></div><div class="kpi">{payback_txt}</div><div class="kpi-sub">Based on annual extra profit</div></div>',
+        f'<div class="card-outline"><div><b>Payback time</b></div><div class="kpi">{payback_txt}</div><div class="kpi-sub">Based on monthly extra profit after subscription</div></div>',
         unsafe_allow_html=True,
     )
 with k6:
